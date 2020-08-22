@@ -4,8 +4,8 @@
 require_once 'DbOperation.php';
 
 $db = new DbOperation();
-$username = $_COOKIE['username'];
-$user = $db->getUserById($username);
+$name = $_COOKIE['name'];
+$user = $db->getUserByName($name);
 
 
 ?>

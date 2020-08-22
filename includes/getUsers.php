@@ -14,7 +14,7 @@ $users = $db->getUsers($term);
 foreach ($users as $user){
 
     echo "<tr>
-                <td><a href=\"\" class=\"brand-color\"><u>View</u></a></td>
+                <td><a href=\"member.php?name=".urlencode($user['name'])."\" class=\"brand-color\"><u>View</u></a></td>
                 <td>".$user['name']." </td>
                 <td>".$user['contact_name']."</td>
                 <td>".$user['address_city']."</td>

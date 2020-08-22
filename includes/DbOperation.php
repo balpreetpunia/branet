@@ -55,6 +55,39 @@ class DbOperation
         return $user;
     }
 
+    function getUserByName($name){
+        $stmt = $this->con->prepare("SELECT username, name, contact_name, contact_email, phone, email, website, membership_type,
+                                            effective_date, expiration_date, address_street, address_city, address_province, address_postalcode FROM users WHERE name = ?");
+        $stmt->bind_param("s",$name);
+        $stmt->execute();
+        $stmt->bind_result($username, $name, $contact_name, $contact_email, $phone, $email, $website, $membership_type, $effective_date, $expiration_date, $address_street, $address_city, $address_province, $address_postalcode);
+
+        //$users = array();
+
+        while($stmt->fetch()){
+            $user  = array();
+            $user['username'] = $username;
+            $user['name'] = $name;
+            $user['contact_name'] = $contact_name;
+            $user['contact_email'] = $contact_email;
+            $user['phone'] = $phone;
+            $user['email'] = $email;
+            $user['website'] = $website;
+            $user['membership_type'] = $membership_type;
+            $user['effective_date'] = $effective_date;
+            $user['expiration_date'] = $expiration_date;
+            $user['address_street'] = $address_street;
+            $user['address_city'] = $address_city;
+            $user['address_province'] = $address_province;
+            $user['address_postalcode'] = $address_postalcode;
+
+
+            //array_push($users, $user);
+        }
+
+        return $user;
+    }
+
 
     function getUsers($term){
         $stmt = $this->con->prepare("SELECT username, name, contact_name, contact_email, phone, email, website, membership_type,

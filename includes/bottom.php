@@ -29,7 +29,7 @@
     else if (url.includes('inventory')){
         $("#inventory-page > span").addClass('brand-color');
     }
-    else if (url.includes('members')){
+    else if (url.includes('member')){
         $("#members-page > span").addClass('brand-color');
     }
     else if (url.includes('settings')){

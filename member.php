@@ -4,17 +4,15 @@ require("includes/top.php");
 
     <div class="container-fluid mx-4 mt-5">
 
-        <h1 class="mt-4">Inventory</h1>
-        <div class=" d-flex mx-0 mr-5 pt-2">
-            <div class="mr-3"><button class="btn button-grey">Action on <span id="check-count">0</span> selected</button> </div>
-            <div class=""><input id="search" class="form-control mr-sm-2 search-bar" type="search" placeholder="Search..." aria-label="Search"></div>
-            <div class="ml-auto"><button class="btn brand-button" data-toggle="modal" data-target="#add_data_Modal"><i class="fas fa-plus mr-2"></i>Add Product</button> </div>
+        <div><a href="members.php" class="brand-color">< Back</a> </div>
+        <div class="d-flex">
+            <h1>Members / Inventory</h1>
+            <div class="ml-auto"><input id="search" class="form-control mr-sm-2 search-bar" type="search" placeholder="Search..." aria-label="Search"></div>
         </div>
         <div id="table-check" class="table-responsive">
             <table id="inventory-table" class="table mt-4 table-borderless color-grey">
                 <thead>
                 <tr>
-                    <th><input formmethod="select_all" name="select_all" value="1" type="checkbox"></th>
                     <th>Brand</th>
                     <th>Model #</th>
                     <th>Main Category</th>
@@ -80,16 +78,16 @@ require("includes/top.php");
             console.log($("#search").val());
 
             $("#search").on('change keyup paste input', function() {
-                getInventoryByCompany($("#search").val(),'<?= $_COOKIE['name'];?>');
+                getInventoryByCompany($("#search").val(),'<?= $_GET['name'];?>');
             });
 
-            getInventoryByCompany($("#search").val(),'<?= $_COOKIE['name'];?>');
+            getInventoryByCompany($("#search").val(),'<?= $_GET['name'];?>');
 
             function getInventoryByCompany(termValue,termValue2) {
 
 
                 //console.log(termValue);
-                $.get("includes/getInventoryByCompany.php", {term: termValue, term2 : termValue2}, function (data) {
+                $.get("includes/getInventoryByMember.php", {term: termValue, term2 : termValue2}, function (data) {
                     // Display the returned data in browser
                     $("#table-body").html(data);
                     //console.log(data);
