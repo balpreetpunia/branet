@@ -38,7 +38,8 @@
 
     $("#log-out").click(function(e) {
         e.preventDefault();
-        document.cookie = "name= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        document.cookie = "a_name= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        document.cookie = "a_username= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
         window.location.href='login.php';
     });
 </script>

@@ -249,6 +249,16 @@ ON a.company = b.name order by model asc) as t where t.model LIKE CONCAT(?,'%')"
     }
 
 
+    function createProduct($model, $brand, $category, $name, $subcategory, $quantity, $price){
+        $stmt = $this->con->prepare("INSERT INTO inventory (model,brand,category,company,subcategory,quantity,price) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssid", $model, $brand, $category, $name, $subcategory, $quantity, $price);
+        if($stmt->execute())
+            return true;
+        return false;
+    }
+
+
 
 
 

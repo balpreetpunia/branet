@@ -1,6 +1,6 @@
 <?php
 $value = 'Teletime';
-if(!isset($_COOKIE['name'])){
+if(!isset($_COOKIE['username'])){
     header("Location: login.php");
     //setcookie("name", $value, time()+3600);
     echo 'unset';
@@ -13,11 +13,13 @@ if(!isset($_COOKIE['name'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Branet</title>
     <link rel="stylesheet" href="public/css/bootstrap.css">
     <link rel="stylesheet" href="public/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw=" crossorigin="anonymous"></script>
     <script src="public/js/bootstrap.bundle.js"></script>
     <script src="https://kit.fontawesome.com/4ba6be508b.js" crossorigin="anonymous"></script>
     <script src="app/app.js"></script>

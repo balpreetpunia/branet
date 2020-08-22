@@ -21,6 +21,70 @@ if(isset($_GET['apicall'])){
             $response['data'] = $db->getUsers($_GET['term']);
             break;
 
+        case 'createproduct':
+            //first check the parameters required for this request are available or not
+            //isTheseParametersAvailable(array('model', 'brand', 'category', 'product'));
+
+            //check if model already exists
+            $dbcheck = new DbOperation();
+            if(isset($_POST['model'])){
+                $result_check = $dbcheck->getInventoryByCompany($_POST['model'],$_POST['name']);
+
+                if($result_check) {
+                    //record is created means there is no error
+                    $response['error'] = true;
+
+                    //in message we have a success message
+                    $response['message'] = 'Product already exists';
+
+                    break;
+                }
+            }
+
+            //creating a new dboperation object
+            $db = new DbOperation();
+
+            $_POST['model'] = isset($_POST['model']) ? $_POST['model'] : '';
+            $_POST['brand'] = isset($_POST['brand']) ? $_POST['brand'] : '';
+            $_POST['category'] = isset($_POST['category']) ? $_POST['category'] : '';
+            $_POST['subcategory'] = isset($_POST['subcategory']) ? $_POST['subcategory'] : '';
+            $_POST['quantity'] = isset($_POST['quantity']) ? $_POST['quantity'] : '';
+            $_POST['price'] = isset($_POST['price']) ? $_POST['price'] : '';
+            $_POST['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+
+            //creating a new record in the database
+            $result = $db->createProduct(
+                $_POST['model'],
+                $_POST['brand'],
+                $_POST['category'],
+                $_POST['name'],
+                $_POST['subcategory'],
+                $_POST['quantity'],
+                $_POST['price']
+            );
+
+
+            //if the record is created adding success to response
+            if($result){
+                //record is created means there is no error
+                $response['error'] = false;
+
+                //in message we have a success message
+                $response['message'] = 'Product added successfully';
+
+                //and we are getting all the products from the database in the response
+                //$response['products'] = $db->getProducts();
+            }else{
+
+                //if record is not added that means there is an error
+                $response['error'] = true;
+
+                //and we have the error message
+                $response['message'] = 'Some error occurred please try again';
+            }
+
+            break;
+
     }
 
 }else{

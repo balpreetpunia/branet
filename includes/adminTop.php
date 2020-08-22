@@ -1,6 +1,5 @@
 <?php
-$value = 'Teletime';
-if(!isset($_COOKIE['name'])){
+if(!isset($_COOKIE['a_username'])){
     header("Location: login.php");
     //setcookie("name", $value, time()+3600);
     echo 'unset';
@@ -65,7 +64,7 @@ if(!isset($_COOKIE['name'])){
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item dropdown ml-auto text-right">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="side-icon mr-3" src="../public/images/user_icon.png"><?= $_COOKIE['name'];?>
+                            <img class="side-icon mr-3" src="../public/images/user_icon.png"><?= $_COOKIE['a_name'];?>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Action</a>

@@ -11,7 +11,7 @@ $value = 'Teletime';
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_COOKIE["name"])){
+if(isset($_COOKIE["a_name"])){
     header("location: dashboard.php");
     exit;
 }
@@ -50,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, name, password FROM credentials WHERE username = ?";
+        $sql = "SELECT id, username, name, password FROM admin WHERE username = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -78,8 +78,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             //$_SESSION["loggedin"] = true;
                             //$_SESSION["id"] = $id;
                             //$_SESSION["username"] = $username;
-                            setcookie("username", $username, time()+3600);
-                            setcookie("name", $name, time()+3600);
+                            setcookie("a_username", $username, time()+3600);
+                            setcookie("a_name", $name, time()+3600);
 //header("Location: dashboard.php");
 
                             // Redirect user to welcome page
@@ -115,12 +115,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Branet</title>
-    <link rel="stylesheet" href="public/css/bootstrap.css">
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="../public/css/bootstrap.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="public/js/bootstrap.bundle.js"></script>
     <script src="https://kit.fontawesome.com/4ba6be508b.js" crossorigin="anonymous"></script>
-    <script src="app/app.js"></script>
+    <script src="../app/app.js"></script>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli">
     <style>
         .login-form {
@@ -150,7 +150,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 <div class="login-form">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="text-center mb-3"><img class=" d-none d-md-inline" src="public/images/logo.png" ></div>
+        <div class="text-center mb-3"><img class=" d-none d-md-inline" src="../public/images/logo.png" ></div>
+        <div>Admin Login</div>
         <div class="form-group" <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>>
             <input type="text" name="username" class="form-control" placeholder="Username" required="required">
             <span class="help-block"><?php echo $username_err; ?></span>
@@ -162,12 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="form-group">
             <button type="submit" class="btn brand-button btn-block">Log in</button>
         </div>
-        <div class="clearfix">
-            <a href="admin/login.php" class="float-left">Admin Login</a>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>
     </form>
-    <p class="text-center"><a href="#">Create an Account</a></p>
 </div>
 </body>
 </html>

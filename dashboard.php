@@ -47,7 +47,7 @@ require("includes/getUser.php");
                 <div class="row d-flex mx-0">
                     <div class="mr-3"><button id="action-button" class="btn btn-light" disabled>Action on <span id="check-count">0</span> selected</button> </div>
                     <div class=""><input id="search" class="form-control mr-sm-2 search-bar" type="search" placeholder="Search..." aria-label="Search"></div>
-                    <div class="ml-auto"><button class="btn brand-button"><i class="fas fa-plus mr-2"></i>Add Product</button> </div>
+                    <div class="ml-auto"><a href="inventory.php"><button class="btn brand-button"><i class="fas fa-plus mr-2"></i>Add Product</button></a></div>
                 </div>
                 <div id="table-check" class="table-responsive">
                     <table id="inventory-table" class="table mt-4 table-borderless color-grey">

@@ -4,8 +4,8 @@
 require_once 'DbOperation.php';
 
 $db = new DbOperation();
-
-$user = $db->getUserById('sales@teletime.ca');
+$username = $_COOKIE['username'];
+$user = $db->getUserById($username);
 
 
 ?>
